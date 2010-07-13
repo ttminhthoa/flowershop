@@ -1,0 +1,52 @@
+<%=link_to "Categories",:action=>:listcategories,:controller=>:category%> >>Show Category
+<div><%=link_to "New product", {:action=>:new,:controller=>:product,:id=>@category},{:class=>"new"}%></div>
+	<%for category in @categories%>
+	   <div class="form_row">
+	   	  <%=image_tag category.language.image%>
+		  <%=category.category_name%>
+	   </div>
+   <%end%>
+   <table border="1" cellpadding="0" cellspacing="0">
+		<tr class="form_row">
+			<th>Image</th>
+			<th>Name</th>
+			<th>New</th>
+			<th>Promotions</th>
+		</tr>
+	<% for product in @products %>
+ 	<tr>
+ 		<td>
+ 			<%=link_to (image_tag product.picture.public_filename(),:class =>"img_details" ,:alt=>"", :border => 0 ),{:action => :show,:controller=>:product,:id => product.id}%>
+ 		</td>
+		<td>
+			<%=product.product_descriptions.find(:first,:conditions=>["language_id=?",2]).product_name%>
+		</td>
+		<td>
+			<%=product.isnew%>
+		</td>
+		<td>
+			<%=product.ispromotion%>
+		</td>
+		<td>
+			<%=link_to "show",:action => :show,:controller=>:product,:id => product.id,:idcategory=>@category %>
+		</td>
+		<td>
+			<%=link_to "edit",:action => :edit,:controller=>:product,:id => product.id,:idcategory=>@category %>
+		</td>
+		<td>
+			<%=link_to "Move To",:action => :moveto,:controller=>:category,:id => product.id,:idcategory=>@category %>
+		</td>
+		<td>
+			<%=link_to "Copy To",:action => :copyto,:controller=>:category,:id => product.id,:idcategory=>@category %>
+		</td>
+		<td>
+			<%=link_to "destroy",:action => :destroy,:controller=>:product,:id => product.id %>
+		</td>
+ 	</tr>
+<%end%>
+</table>
+  <div class="pagination"> <%= will_paginate @products %></div>
+
+<div class="form_row">
+  <%=link_to "Back",:action=>:listcategories,:controller=>:category %>
+</div> 

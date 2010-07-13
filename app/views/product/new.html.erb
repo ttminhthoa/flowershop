@@ -1,0 +1,44 @@
+<div><%=link_to "Product",:action=>:show,:controller=>:category,:id=>@idcategory%> >>New Product</div>
+<div class="contact_form">
+  <%form_for :picture, :url =>{:action=>:create,:controller=>:product,:id=>@idcategory},:html => { :multipart => true } do |f| %>
+  	<% fields_for(:product) do |i| %>
+		<%fields_for (:product_description)do |k|%>
+			<%for language in @language%>
+			   	 	<div class="form_row">
+			   	 	  <strong>Name: </strong><br/>
+				      <%=image_tag language.image%>&nbsp;
+					  <%= text_field "product_description[]","product_name" %>
+				  	</div>
+					<div class="form_row">
+			   	 	  <strong>Description: </strong><br/>
+				      <%=image_tag language.image%>&nbsp;
+					  <%= text_area "product_description[]","product_description",:rows=>5 %>
+					 </div>
+					 <%=hidden_field "product_description[]","language_id",:value=>language.id %>
+			  <%end%>
+		  <%end%>
+		  <div class="form_row">
+			   	 	  <strong>Price: </strong><br/>
+					  <%=i.text_field :price %>
+		  </div>
+		  <div class="form_row">
+			   	 	  <strong>New: </strong><br/>
+					  <%=i.check_box :isnew %>
+		 </div>
+		 <div class="form_row">
+			   	 	  <strong>Promotion:  </strong><br/>
+					  <%=i.check_box :ispromotion %>
+		</div>
+	<%end%>
+	<div class="form_row">
+      <strong>Image: </strong><br/>
+      <%= f.file_field :uploaded_data %>
+    </div>
+	<div class="form_row">
+		<%=submit_tag "Create",:class=>"register" %>
+	</div>
+  <%end%>
+</div>
+<div class="form_row">
+	<%=link_to "Back", :action=>:show,:controller=>:category,:id=>@idcategory%>
+</div>

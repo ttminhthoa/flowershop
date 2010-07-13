@@ -1,0 +1,20 @@
+<div><%=link_to "Categories",:action=>:listcategories,:controller=>:category%> >>New Category</div>
+<div class="contact_form">
+	 <div class="form_row">
+	  	<strong>Name</strong>
+	  </div>
+  		<%form_for :category, :url =>{:action=>:create,:controller=>:category} do |f| %>
+			<%fields_for :category_name do |i|%>
+			<%for language in @language%>
+			   <div class="form_row">
+			    	<%=image_tag language.image %>		
+			    	<%= text_field "category_name[]","category_name" %>
+					<%= hidden_field "category_name[]","language_id",:value=>language.id%>
+			    </div>
+	<%end%>
+		<%end%>
+	  <div class="form_row">
+	      <%=submit_tag "Create",:class=>"register"%>
+	    </div>
+  <%end%>
+</div>

@@ -1,0 +1,22 @@
+	 
+<div class="crumb_nav">  <%= link_to @sort1 ,:action=>:index,:controller=>:flower%> >> <%= @categoryname[0].category_name %> </div>
+      <div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span><%=@categoryname[0].category_name%></div>
+      <div class="new_products">
+      	 <% for product in @products%>
+		 <%@p = product.product_descriptions.find(:first,:conditions=>["language_id=?",@language])%>
+      	<div class="new_prod_box"> <%= link_to @p.product_name,:action =>:details,:id => product.id%>
+          <div class="new_prod_bg"> 
+		  	<span class="new_icon">
+		  		<%if product.isnew == 1 %>
+					<%=image_tag "/images/new_icon.gif"%>
+		  		<%end%>
+				<%if product.ispromotion == 1 %>
+						<%=image_tag "/images/promo_icon.gif"%>
+				<%end%>
+			</span> 
+			<%= link_to (image_tag product.picture.public_filename(),:alt=>"",:class=>"thumb", :border=>"0"),:action =>:details,:id=>product.id%> </div>
+        </div>
+		 <%end%>
+       <div class="pagination"> <%= will_paginate @products%> </div>
+      </div>
+      <div class="clear"></div>

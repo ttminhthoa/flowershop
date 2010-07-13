@@ -1,0 +1,23 @@
+<div><%=link_to "Categories",:action=>:listcategories,:controller=>:category%> >>Edit Category</div>
+<div class="contact_form">
+	 <div class="form_row">
+	  	<strong>Name</strong>
+	  </div>
+  		<%form_for :category, :url =>{:action=>:update,:controller=>:category,:id=>@category} do |f| %>
+			<%for category in @categoryname%>
+			<%fields_for "category_name[]",category do |i|%>
+			   <div class="form_row">
+			    	<%=image_tag category.language.image %>		
+			    	<%= i.text_field :category_name %>
+					
+			    </div>
+			<%end%>
+		<%end%>
+	  <div class="form_row">
+	      <%=submit_tag "Update",:class=>"register"%>
+	    </div>
+  <%end%>
+</div>
+<div class="form_row">
+	<%=link_to "Back",:action=>:listcategories,:controller=>:category%>
+</div>

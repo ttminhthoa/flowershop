@@ -1,0 +1,42 @@
+
+<div class="title"><span class="title_icon"><img src="/images/bullet4.gif" alt="" /></span>LIST PRODUCTS</div>
+<!--<div><%=link_to "New product", {:action=>:new,:controller=>:product},{:class=>"new"}%></div>-->
+<table border="1"  cellpadding="0" cellspacing="0">
+	<tr class="form_row">
+		<th>Image</th>
+		<th>Name</th>
+		<th>Isnew</th>
+		<th>IsPromotions</th>
+		<th>status</th>
+	</tr>
+<% for product in @listproduct %>
+ 	<tr>
+ 		<td>
+ 			<%=link_to (image_tag product.product.picture.public_filename(),:class =>"img_details" ,:alt=>"", :border => 0 ),{:action => :show,:controller=>:product,:id => product.product.id}%>
+ 		</td>
+		<td>
+			<%=product.product_name%>
+		</td>
+		<td>
+			<%=product.product.isnew%>
+		</td>
+		<td>
+			<%=product.product.ispromotion%>
+		</td>
+		<td>
+			<%=product.product.status%>
+		</td>
+		<td>
+			<%=link_to "show",:action => :show,:controller=>:product,:id => product.product.id %>
+		</td>
+		<!--<td>
+			<%=link_to "edit",:action => :edit,:controller=>:product,:id => product.product.id %>
+		</td>-->
+		<td>
+			<%=link_to "destroy",:action => :destroy,:controller=>:product,:id => product.product.id %>
+		</td>
+ 	</tr>
+<%end%>
+</table>
+  <div class="pagination"> <%= will_paginate @listproduct %></div>
+ 

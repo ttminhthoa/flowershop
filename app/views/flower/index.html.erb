@@ -1,0 +1,31 @@
+
+<div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span><%= @sort16 %></div>
+<% for product in @featured_products %>
+  <div class="feat_prod_box">
+    <div class="prod_img">
+		 <%=link_to (image_tag product.picture.public_filename(),:class =>"thumb" ,:alt=>"", :border => 0 ),{:action => :details,:controller=>:flower,:id => product}%>
+	</div>
+    <div class="prod_det_box">
+      <div class="box_top"></div>
+      <div class="box_center">
+        <div class="prod_title"><%= product.product_descriptions.find_by_language_id(@language.id).product_name %></div>
+        <p class="details"><%= truncate(product.product_descriptions.find_by_language_id(@language.id).product_description,120) %></p>
+		<%=link_to (@sort17),{:action => :details,:controller=>:flower,:id => product},:class=>'more'%>
+        <div class="clear"></div>
+      </div>
+      <div class="box_bottom"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+<%end%>
+<div class="title"><span class="title_icon"><img src="/images/bullet2.gif" alt="" /></span><%= @language.constant_menus.find_by_sort(3).menu_name %></div>
+<div class="new_products">
+  <% for product in @newproducts %>
+    <div class="new_prod_box">
+    	<%=link_to (product.product_descriptions.find_by_language_id(@language.id).product_name),{:action => :details,:controller=>:flower,:id => product}%>
+      <div class="new_prod_bg"> <span class="new_icon"><img src="/images/new_icon.gif" alt="" /></span> 
+	  <%=link_to (image_tag (product.picture.public_filename()),:class=>"thumb",:border=>0,:alt=>"" ),{:action => :details,:controller=>:flower,:id => product}%>
+	  </div>
+    </div>
+  <%end%>
+</div>

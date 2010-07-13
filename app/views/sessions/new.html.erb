@@ -1,0 +1,39 @@
+<div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span><%=@sort33%></div>
+ <% if logged_in? %>
+  <div class="form_row">
+    <strong> Bạn đã đăng nhập. Vui lòng thóat ra để đăng nhập tiếp. </strong>
+  </div>
+<%else%>
+  <% if flash[:error] -%>
+    <div class="form_row">
+      <strong>  <%=flash[:error]%> </strong>
+    </div>
+  <% end -%>
+<div class="feat_prod_box_details">
+
+  <div class="contact_form">
+    <div class="form_subtitle"><%=@sort33%></div>
+
+    <% form_tag session_path do -%>
+      <div class="form_row"><%= label_tag @sort19 %><br />
+        <%= text_field_tag 'login', @login,:class=>"contact_input" %></div>
+
+      <div class="form_row"><%= label_tag @sort20 %><br/>
+        <%= password_field_tag 'password', nil,:class=>"contact_input" %></div>
+      <!-- Uncomment this if you want this functionality-
+      <div class="form_row"><%= label_tag 'remember_me', 'Remember me' %>
+      <%= check_box_tag 'remember_me', '1', @remember_me %></div>-->
+
+      <div class="form_row"><%= submit_tag @sort33,:class=>"register"%></div>
+    <% end -%>
+  </div>
+</div>
+<div class="clear">
+
+</div>
+<div class="form_row">
+  <strong>  <%=@notice%> </strong>
+</div>
+<%end%>
+
+

@@ -1,0 +1,37 @@
+<div> <%=link_to "Products",:action=>:show,:controller=>:category,:id => @idcategory%> >> Detail</div>
+ <div class="contact_form">
+ 		
+          <div class="form_row">
+            <strong>Name: </strong><br/>
+			<%=image_tag @products[0].language.image%>
+         	<%=@products[0].product_name%><br/>
+			<%=image_tag @products[1].language.image%>
+			<%=@products[1].product_name%>
+          </div>
+          <div class="form_row">
+            <strong>Image</strong><br/>
+            <%=image_tag @products[0].product.picture.public_filename(),:class=>"thumb"%>
+          </div>
+          <div class="form_row">
+            <strong>Description :</strong><br/>
+            <%=image_tag @products[0].language.image%><%=@products[0].product_description%><br/>
+			<%=image_tag @products[1].language.image%><%=@products[1].product_description%>
+          </div>
+		  <div class="form_row">
+            <strong>Price: </strong>
+            <%=@products[0].product.price%>
+          </div>
+          <div class="form_row">
+			<%if @products[0].product.isnew == 1 %>
+				 <strong>Isnew: New Product</strong>
+			<%end%>
+          </div>
+          <div class="form_row">
+           <%if @products[0].product.ispromotion == 1%>
+			 <strong>IsPromotion: Promotion product </strong>
+			<%end%>
+          </div>
+        </div>
+		<div class="form_row">
+<%=link_to "Back",:action=>:show,:controller=>:category,:id => @idcategory %>
+</div>

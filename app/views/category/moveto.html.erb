@@ -1,0 +1,15 @@
+ <div><%=link_to "Back",:action=>:show,:controller=>:category,:id => @idcategory%></div>
+ <div class="feat_prod_box_details">
+        <div class="contact_form">
+          <div class="form_subtitle">Move To</div>
+		   <div  class="form_row"> Select category:</div>
+			<%form_for :categories_product,:url=>{:action=>:move,:controller=>:category,:idcategory=>@idcategory,:idproduct=>@idproduct} do |f| %>
+			<div class=="form_row">
+				<%=f.hidden_field :product_id,:value =>@idproduct%>
+				<%=f.select :category_id, @categories%>
+			</div>
+			<div class="form_row"><%=submit_tag "Move ",:class=>"register"%></div>	
+			<%end%>
+        </div>
+      </div>
+	  

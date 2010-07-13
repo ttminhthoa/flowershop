@@ -1,0 +1,12 @@
+<% form_tag('javascript:void(0)') do %>
+  Search <%= text_field_tag 'search', @search %>
+  <%= observe_field :search,:frequency => 0.5,
+					:update    => 'ajaxWrapper', 
+					:before => "Element.show('spinner')",  
+                    :complete  => "Element.hide('spinner')", 
+                    :url       => {:action=>'search', :only_path => false},  
+                    :with      => "'search=' + encodeURIComponent(value)" %> 
+<% end %>
+<div id='ajaxWrapper'>
+<%= render :partial=>'search' %>  
+</div>

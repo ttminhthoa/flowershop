@@ -1,0 +1,24 @@
+<div class="title"><span class="title_icon"><img src="/images/bullet2.gif" alt="" /></span>LIST CATEGORY</div>
+<div><%=link_to "New", {:action=>:new,:controller=>:category},{:class=>"new"}%></div>
+<table border="1" width="400px" cellpadding="0" cellspacing="0">
+	<tr class="form_row">
+		<th>Name</th>
+	</tr>
+<% for category in @categories %>
+ 	<tr>
+		<td>
+			<%=category.category_names.find(:first,:conditions=>["language_id=?",1]).category_name%>
+		</td>
+		<td>
+			<%=link_to "show",:action => :show,:controller=>:category,:id => category.id %>
+		</td>
+		<td>
+			<%=link_to "edit",:action => :edit,:controller=>:category,:id => category.id %>
+		</td>
+		<td>
+			<%=link_to "destroy",:action => :destroy,:controller=>:category,:id => category.id %>
+		</td>
+ 	</tr>
+<%end%>
+</table>
+ 

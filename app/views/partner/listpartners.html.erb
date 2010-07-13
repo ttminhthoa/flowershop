@@ -1,0 +1,29 @@
+
+<div class="title"><span class="title_icon"><img src="/images/bullet3.gif" alt="" /></span>LIST PARTNER </div>
+<div><%=link_to "New Partner", {:action=>:new,:controller=>:partner},{:class=>"new"}%></div>
+<table border="1"  cellpadding="0" cellspacing="0" width="350px">
+  <tr class="form_row">
+    <th>Image</th>
+    <th>Name</th>
+  </tr>
+  <% for partner in @listpartners %>
+    <tr>
+      <td>
+        <%=link_to (image_tag partner.picture.public_filename(),:class =>"img_details" ,:alt=>"", :border => 0 ),:action=>:show,:controller=>:partner,:id=>partner%>
+      </td>
+      <td>
+        <a href="<%=partner.url%>"><%= partner.name%></a>
+      </td>
+
+      <td>
+        <%=link_to "show",:action => :show,:controller=>:partner,:id => partner %>
+      </td>
+      <td>
+        <%=link_to "edit",:action => :edit,:controller=>:partner,:id => partner%>
+      </td>
+      <td>
+        <%=link_to "destroy",:action => :destroy,:controller=>:partner,:id => partner %>
+      </td>
+    </tr>
+  <%end%>
+</table>

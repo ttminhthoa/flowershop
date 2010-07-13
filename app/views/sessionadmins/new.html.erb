@@ -1,0 +1,24 @@
+
+<div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span>Login</div>
+<div class="feat_prod_box_details">
+  <div class="contact_form">
+    <div class="form_subtitle">Login</div>
+			<% form_tag sessionadmin_path do -%>
+			<div class="form_row">Username: <br/>
+			<%= text_field_tag 'login', @login,:class=>"contact_input" %></div>
+			
+			<div class="form_row">Password: <br/>
+			<%= password_field_tag 'password', nil,:class=>"contact_input" %></div>
+			
+			<!-- Uncomment this if you want this functionality
+			<p><%= label_tag 'remember_me', 'Remember me' %>
+			<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+			-->
+			
+			<div class="form_row"><%= submit_tag 'Log in',:class=>"register" %></div>
+			<% end -%>
+  </div>
+</div>
+<div class="clear">
+
+</div>

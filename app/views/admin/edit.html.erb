@@ -1,0 +1,31 @@
+<div><%=link_to "Customers",:action=>:listcustomers,:controller=>:admin%> >>Edit Customer</div>
+<div class="contact_form">
+	<%form_for @customer,:url=>{:action=>:update,:controller=>:admin,:id=>@customer} do |f|%>
+	 <div class="form_row">
+	  	<strong>Username:</strong><br>
+		<%=f.text_field :login,:disabled =>:true%>
+	  </div>
+	  <div class="form_row">
+	  	<strong>Email:</strong><br>
+		<%=f.text_field :email,:disabled =>:true%>
+	  </div>
+	  <div class="form_row">
+	  	<strong>Phone:</strong><br>
+		<%=f.text_field :phone,:disabled =>:true%>
+	  </div>
+	  <div class="form_row">
+	  	<strong>Address:</strong><br>
+		<%=f.text_field :address,:disabled =>:true%>
+	  </div>
+	  <div class="form_row">
+	  	<strong>Destroy: </strong>
+		<%=f.check_box :status %>
+	  </div>
+	  <div class="form_row">
+	      <%=submit_tag "Update",:class=>"register"%>
+	   </div>
+  	<%end%>
+</div>
+<div class="form_row">
+  <%=link_to "Back",:action=>:listcustomers,:controller=>:admin%>
+</div>

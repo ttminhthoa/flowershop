@@ -1,0 +1,44 @@
+<div class="crumb_nav"> <%=link_to @sort1,:action =>:index,:controller=>:flower%>&nbsp;>><%=@product.product_name%> </div>
+
+<div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span><%=@product.product_name%></div>
+<div class="feat_prod_box_details">
+  <div class="prod_img">
+    <%= link_to(image_tag(@product.product.picture.public_filename(),:class=>"img_details",:boder=>"0"),"#{@product.product.picture.public_filename()}",:popup => ['Zoom','width=600,height=600'])%>
+    <br />
+    <%= link_to(image_tag("/images/zoom.gif",:border=>"0"),"#{@product.product.picture.public_filename()}",:popup => ['Zoom','width=600,height=600']) %>
+  </div>
+  <div class="prod_det_box">
+    <div class="box_top"></div>
+    <div class="box_center">
+      <div class="prod_title"><%= @sort17%></div>
+      <p class="details"><%=@product.product_description%> </p>
+      <div class="price">
+        <strong><%=@sort32%>:</strong>
+        <span class="red"><%=number_to_currency(@product.product.price)%></span><br/>
+        <%if @product.product.ispromotion ==1 %>
+          <strong>PRICE SALE: </strong>
+          <%@pricesale=@product.product.price - (@product.product.price * 0.1)%>
+          <span class="red"><%=number_to_currency(@pricesale)%></span>
+        <%end%>
+      </div>
+      <%form_remote_tag :url=>{:action=>:add_to_cart,:id=>@product.product.id}do%>
+        <div class="submit"> <%=submit_tag "Add to cart",:class=>"register"%></div>
+      <%end%>
+      <div class="clear"></div>
+    </div>
+    <div class="box_bottom"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<div id="demo" class="demolayout">
+
+  <div class="tabs-container">
+
+    <div style="display: none;" class="tab" id="tab2">
+
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+

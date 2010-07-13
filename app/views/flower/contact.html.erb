@@ -1,0 +1,40 @@
+<div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span><%=@sort6%></div>
+<%if flash[:thanks]%>
+  <div class="form_row">
+    <%=flash[:thanks]%>
+  </div>
+<%else%>
+
+  <div class="feat_prod_box_details">
+
+    <div class="contact_form">
+      <div class="form_subtitle"><%=@sort28%></div>
+      <%form_for :contactus, :url=>{:action=>:createcontact,:controller=>:flower} do |f|%>
+        <div class="form_row">
+          <strong><%=@sort29%>:</strong><br/>
+          <%=f.text_field :contact_name,:class=>"contact_input"%>
+        </div>
+        <div class="form_row">
+          <strong><%=@sort21%></strong><br/>
+          <%=f.text_field :contact_email,:class=>"contact_input"%>
+        </div>
+        <div class="form_row">
+          <strong><%=@sort22%></strong><br/>
+          <%=f.text_field :contact_phone,:class=>"contact_input"%>
+        </div>
+
+        <div class="form_row">
+          <strong><%=@sort30%>:</strong><br/>
+          <%=f.text_area :message,:class=>"contact_input",:rows=>5%>
+        </div>
+        <div class="form_row"> <%=submit_tag @sort31,:class=>"register"%> </div>
+      <%end%>
+    </div>
+  </div>
+  <div class="form_row"><%if flash[:notice].nil?%>
+    <%else%>
+      <%=flash[:notice]%>
+    <%end%>
+  </div>
+  <div class="clear"></div>
+<%end%>

@@ -1,0 +1,36 @@
+<div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span>Check Out</div>
+<%if flash[:saveorder]%>
+  <div class="form_row">
+    <%=flash[:saveorder]%>
+  </div>
+<%else%>
+  <div class="feat_prod_box_details">
+    <div class="contact_form">
+      <%= error_messages_for 'order' %>
+      <div class="form_subtitle"><%=@sort43%></div>
+
+      <% form_for :order, :url => { :action => :save_order } do |form| %>
+        <div class="form_row">
+          <strong><%= form.label @sort29 %></strong>
+          <br/>
+          <%= form.text_field :recipient, :size => 40,:class=>"contact_input" %>
+        </div>
+        <div class="form_row">
+          <strong><%= label :order, :address, @sort24 %></strong>
+          <br/>
+          <%= form.text_field :address,:class=>"contact_input" %>
+        </div>
+        <div class="form_row">
+          <strong><%= label :order, :phone, @sort22 %></strong>
+          <br/>
+          <%= form.text_field :phone, :size => 40, :class=>"contact_input"%>
+        </div>
+        <%= form.hidden_field :customer_id, :value=>current_customer.id %>
+        <div class="form_row">
+          <%= submit_tag "Order" , :class => "register" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="clear"></div>
+<%end%>

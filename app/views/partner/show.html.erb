@@ -1,0 +1,19 @@
+<div> <%=link_to "Partner",:action=>:listpartners,:controller=>:partner%> >> Detail</div>
+ <div class="contact_form">
+        	<div class="title"><span class="title_icon"><img src="/images/bullet3.gif" alt="" /></span><%=@partner.name%></div>
+          <div class="form_row">
+            <strong>Name: </strong>
+         	<%=@partner.name%>
+          </div>
+          <div class="form_row">
+            <strong>Image: </strong><br/>
+            <%=image_tag @partner.picture.public_filename(),:class=>"thumb"%>
+          </div>
+          <div class="form_row">
+            <strong>URL:</strong><br/>
+            <%=@partner.url%>
+          </div>
+        </div>
+		<div class="form_row">
+<%=link_to "Back",:action=>:listpartners,:controller=>:partner%>
+</div>

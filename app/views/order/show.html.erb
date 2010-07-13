@@ -1,0 +1,42 @@
+<div><%=link_to "Orders",:action=>:listorders,:controller=>:order%> >>Show Order</div>
+<div class="contact_form">
+	<div>   
+		  <strong class="form_row">Recipient: </strong><%=@order.recipient%>
+	</div>
+   	<div >
+		  <strong class="form_row">Address: </strong><%=@order.address%>
+	   </div>
+	   <div >
+		 <strong class="form_row"> Phone: </strong><%=@order.phone%>
+	   </div>
+	   <%@tong=0%>
+	   
+   <table border="1"  cellpadding="0" cellspacing="0">
+		<tr class="form_row">
+			<th>Product Name</th>
+			<th>Quantity</th>
+			<th>Price</th>
+		</tr>
+	<% for order in @orderdetails %>
+ 	<tr>
+ 		<td>
+ 			<%=order.product.product_descriptions.find(:first,:conditions=>["language_id=?",2]).product_name%>
+ 		</td>
+		<td>
+			<%=order.final_quantity%>
+		</td>
+		<td>
+			<%=number_to_currency(order.final_price)%>
+		</td>
+		<% @tong = @tong + order.final_price %>
+ 	</tr>
+	
+<%end%>
+<tr>
+	<td colspan="3" align="right"><strong class="form_row">TOTAL: </strong><%=number_to_currency (@tong)%></td>
+</tr>
+</table>
+</div>
+<div class="form_row">
+  <%=link_to "Back",:action=>:listorders,:controller=>:order %>
+</div>           

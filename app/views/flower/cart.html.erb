@@ -1,0 +1,81 @@
+<script language="JavaScript" type="text/javascript">
+  function numberonly(e,decimal)
+  {
+    var key;
+    var keychar;
+    if (window.event)
+    {
+      key = window.event.keyCode;
+    }
+    else if (e)
+    {
+      key = e.which;
+    }
+    else
+    {
+      return true;
+    }
+    keychar = String.fromCharCode(key);
+
+    if ((key==null) || (key==0) || (key==8) || (key==9) || (key==13) || (key==27) )
+    {
+      return true;
+    }
+    else if ((("0123456789").indexOf(keychar) > -1))
+    {
+      return true;
+    }
+    else if (decimal && (keychar == "."))
+    {
+      return true;
+    } 
+    else
+      return false;
+  }
+
+</script>
+<div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span><%=@sort11%></div>
+<div class="feat_prod_box_details">
+  <table class="cart_table">
+    <tr class="cart_title">
+      <td><%=@sort36%></td>
+      <td><%=@sort41%></td>
+      <td><%=@sort39%></td>
+      <td><%=@sort37%></td>
+      <td><%=@sort38%></td>
+    </tr>
+    <%for item in @cart.items%>
+      <tr>
+        <td>
+          <%=link_to (image_tag (item.image),:class=>"cart_thumb",:alt=>"",:border=>0),{:action=>:details,:controller=>:flower,:id=>item.product}%>
+        </td>
+        <td><%@p=item.productds(@language)%><%=@p.product_name%></td>
+        <td><%=number_to_currency(item.unitprice)%></td>
+        <td>
+          <% form_tag(:action => :updatenum, :controller =>:flower, :id => item.product) do%>
+            <%= text_field_tag :quantity, item.quantity, :size=> 1,:maxlength=> 3,
+              :onchange => 'this.form.submit();', :onkeypress => 'return numberonly(event,false);' %>
+          <%end%>
+        </td>
+        <td><%=number_to_currency(item.price)%></td>
+      </tr>
+    <%end%>
+    <tr>
+      <td colspan="4" class="cart_total">
+        <span class="red"><%=@sort40%>:</span>
+      </td>
+      <td> <%=number_to_currency(@cart.total_price)%></td>
+    </tr>
+  </table>
+
+  <%if flash[:empty]%>
+    <div class="form_row">
+      <%=flash[:empty]%>
+    </div>
+  <%end%>
+
+  <%=link_to "<< #{@sort35}",{:action=>:index,:controller=>:flower},{:class=>"continue"}%>
+
+  <%=link_to "Checkout >>",{:action=>:checkout,:controller=>:flower},{:class=>"checkout"}%>
+</div>
+<div class="clear"></div>

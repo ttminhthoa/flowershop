@@ -1,0 +1,30 @@
+<div><%=link_to "Partner",:action=>:listpartners,:controller=>:partner%> >>New Partner</div>
+<div class="contact_form">
+
+  <%form_for :picture,@picture, :url =>{:action=>:create,:controller=>:partner},:html => { :multipart => true } do |f| %>
+ 
+  <% fields_for(:partner, @picture.partner) do |i| %>
+    <div class="form_row">
+      <strong>Partner Name: </strong><br/>
+      <%=i.text_field :name,:class=>"contact_input" %>
+    </div>
+
+    <div class="form_row">
+      <strong>Url :</strong><br/>
+      <%= i.text_field :url,:class=>"contact_input"%>
+    </div>
+
+  <% end %>
+   <div class="form_row">
+      <strong>Image</strong><br/>
+      <%= f.file_field :uploaded_data %>
+    </div>
+
+  <div class="form_row">
+      <%=submit_tag "Create",:class=>"register"%>
+    </div>
+  <%end%>
+</div>
+<div>
+  <%=link_to "Back",:action=>:listpartners,:controller=>:partner%>
+</div> 

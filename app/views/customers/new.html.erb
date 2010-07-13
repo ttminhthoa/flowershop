@@ -1,0 +1,63 @@
+
+<div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span><%=@sort5%></div>
+<div class="form_row">
+  <% if flash[:error] -%>
+    <strong> <%= flash[:error] %></strong>
+  <% end -%>
+</div>
+
+<% if flash[:success] -%>
+  <div class="form_row">
+    <strong> <%= flash[:success] %></strong>
+  </div>
+<%else%>
+  <div class="feat_prod_box_details">
+
+    <div class="contact_form">
+      <div class="form_subtitle"><%=@sort25%></div>
+      <% @customer.password = @customer.password_confirmation = nil %>
+
+      <%= error_messages_for :customer %>
+      <% form_for :customer, :url =>{:action=>:create} do |f| %>
+        <div class="form_row">
+          <strong><%= label_tag @sort19 %><br/></strong>
+          <%= f.text_field :login , :class=>"contact_input"%>
+        </div>
+
+        <div class="form_row">
+          <strong><%= label_tag @sort21 %><br/></strong>
+          <%= f.text_field :email, :class=>"contact_input" %>
+        </div>
+
+        <div class="form_row">
+          <strong><%= label_tag @sort20 %><br/></strong>
+          <%= f.password_field :password, :class=>"contact_input" %>
+        </div>
+
+        <div class="form_row">
+          <strong><%= label_tag 'password_confirmation' , @sort27 %><br/></strong>
+          <%= f.password_field :password_confirmation, :class=>"contact_input" %>
+        </div>
+
+        <div class="form_row">
+          <strong><%= label_tag @sort22 %><br/></strong>
+          <%= f.text_field :phone, :class=>"contact_input" %>
+        </div>
+
+        <div class="form_row">
+          <strong><%= label_tag @sort24 %><br/></strong>
+          <%= f.text_field :address , :class=>"contact_input"%>
+        </div>
+
+        <div class="form_row">
+          <%= submit_tag @sort5 ,:class=>"register"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="clear">
+
+  </div>
+<% end -%>
+
+

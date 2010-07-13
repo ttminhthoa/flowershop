@@ -1,0 +1,23 @@
+<div class="new_products">
+      	 <% for product in @products%>
+      	<div class="new_prod_box"> 
+			<%= link_to product.product_name,:action =>:details,:id => product.product.id%>
+          <div class="new_prod_bg">
+          	<%if product.product.isnew == 1%> 
+			  	<span class="new_icon">
+						<%=image_tag "/images/new_icon.gif"%>
+				</span> 
+			<%else%>
+				<%if product.product.ispromotion == 1%>
+					<span class="new_icon">
+						<%=image_tag "/images/promo_icon.gif"%>
+					</span> 				
+				<%end%>
+			<%end%>
+			<%= link_to (image_tag product.product.picture.public_filename(),:alt=>"",:class=>"thumb", :border=>"0"),:action =>:details,:id=>product.product.id%>
+			</div>
+        </div>
+		 <%end%>
+		  </div>
+	   <div class="clear"></div>
+	 

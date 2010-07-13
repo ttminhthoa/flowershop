@@ -1,0 +1,27 @@
+<div><%=link_to "Orders",:action=>:listorders,:controller=>:order%> >>Edit Order</div>
+<div class="contact_form">
+	<%form_for :order,:url=>{:action=>:update,:controller=>:order,:id=>@order} do |f|%>
+	<div class="form_row">   
+		  <strong >Recipient: </strong><br/>
+		  <%=f.text_field :recipient,:disabled=>true%>
+	</div>
+   	<div class="form_row">   
+		  <strong >Address: </strong><br/>
+		  <%=f.text_field :address,:disabled=>true%>
+	</div>
+	<div class="form_row">   
+		  <strong >Phone: </strong><br/>
+		  <%=f.text_field :phone ,:disabled=>true%>
+	</div>
+	<div class="form_row">   
+		  <strong >Status: </strong>
+		  <%=f.check_box :status%>
+	</div>
+	<div class="form_row">   
+		  <%=submit_tag "Update",:class=>"register"%>
+	</div>
+<%end%>
+</div>
+<div class="form_row">
+  <%=link_to "Back",:action=>:listorders,:controller=>:order %>
+</div>

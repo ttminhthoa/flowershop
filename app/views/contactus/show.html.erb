@@ -1,0 +1,23 @@
+<div><%=link_to "Contacts",:action=>:listcontactus,:controller=>:contactus%> >>Show Contact</div>
+	<div class="contact_form">
+          <div class="form_row">
+            <strong>Name: </strong>
+         	<%=@contact.contact_name%>
+          </div>
+          <div class="form_row">
+            <strong>Email:</strong>
+            <%=@contact.contact_email%>
+          </div>
+          <div class="form_row">
+            <strong>Phone:</strong>
+            <%=@contact.contact_phone%>
+          </div>
+		  <div class="form_row">
+            <strong>Message :</strong>
+            <%=@contact.message%>
+          </div>
+     </div>
+<div class="form_row">
+		
+  <%=link_to "Back",:action=>:listcontactus,:controller=>:contactus %>
+</div> 

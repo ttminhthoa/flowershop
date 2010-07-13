@@ -1,0 +1,21 @@
+<div><%=link_to "Customers ",:action=>:listcustomers,:controller=>:admin%> >>Show Customer</div>
+<div class="contact_form">
+ 	  <div class="form_row">
+ 	  	<strong>Username: </strong><%=@customer.login%>
+   	  </div> 
+	 <div class="form_row">
+	 	<strong>Email: </strong><%=@customer.email%>
+   	  </div> 
+	  <div class="form_row">
+	  	<strong>Phone: </strong><%=@customer.phone%>
+   	  </div> 
+	  <div class="form_row">
+	  	<strong>Address: </strong><%=@customer.address%>
+   	  </div> 
+	  <div class="form_row">
+	  	<strong>Status:</strong><%=@customer.status%>
+   	  </div> 
+ </div>
+<div class="form_row">
+  <%=link_to "Back",:action=>:listcustomers,:controller=>:admin%>
+</div> 

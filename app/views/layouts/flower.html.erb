@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=uft-8" />
+    <title>Flower shop</title>
+    <%=stylesheet_link_tag 'style','pro_dropdown_2'%>
+    <%= javascript_include_tag :defaults %>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="header">
+        <div class="logo"><a href=""><img src="/images/logo.gif" alt="" border="0" /></a></div>
+        <div id="menu">
+          <ul id="nav">
+            <%= menu_builder() %>
+          </ul>
+        </div>
+      </div>
+      <div class="center_content">
+        <div class="left_content">
+          <%= yield :layout%>
+          <div class="clear"></div>
+        </div>
+        <!--end of left content-->
+        <div class="right_content">
+          <div class="languages_box">
+            <span class="red"><%=@sort9%></span>
+            <%for lang in @languages%>
+              <%=link_to (image_tag (lang.image),:border =>0,:title=>lang.name ),{:action => :changelanguage,:controller=>:flower,:id => lang}%>
+            <%end%>
+
+          </div>
+          <div class="currency">
+            <%=link_to @sort34,:action=>:emptycart,:controller=>:flower%>
+          </div>
+          <%if logged_in?%>
+            <div style="float: right;margin-right: 30px">
+              <strong> Chào <a style="color: blue" href="/flower/myaccount"><%=@cur_customer.login%></a></strong>
+            </div>
+          <%end%>
+          <div class="cart">
+            <div class="title">
+              <span class="title_icon">
+                <img src="/images/cart.gif" alt="" />
+              </span><%=@sort10 %>
+            </div>
+            <div id="cart" class="home_cart_content">
+              <%if @cart %>
+                <%= render(:partial => "add_to_cart", :object => @cart) %>
+              <%end%>
+            </div>
+            <%=link_to @sort11,{:action=>:cart,:controller=>:flower},{:class => "view_cart"}%></div>
+          <div class="title"><span class="title_icon"><img src="/images/bullet3.gif" alt="" /></span><%=@sort12 %></div>
+          <div class="about">
+            <p> <img src="/images/about.gif" alt="" class="right" /><%= @sort18 %></p>
+          </div>
+          <div class="right_box">
+            <div class="title"><span class="title_icon"><img src="/images/bullet4.gif" alt="" /></span><%= @sort13%></div>
+            <%for product in @product_promotions %>
+              <div class="new_prod_box"> <%=link_to product.product_name,:action=>:details,:controller=>:flower,:id=>product.product.id%>
+                <div class="new_prod_bg"> <span class="new_icon"><img src="/images/promo_icon.gif" alt="" /></span>
+                  <%=link_to (image_tag (product.product.picture.public_filename()),:class=>"thumb",:border=>0,:alt=>"" ),{:action => :details,:id => product.product.id}%>
+                </div>
+              </div>
+
+            <%end%>
+          </div>
+          <div class="right_box">
+            <div class="title"><span class="title_icon"><img src="/images/bullet5.gif" alt="" /></span><%= @sort14 %></div>
+            <ul class="list">
+               <%for category in @categories%>
+                <li><%=link_to category.category_names.find_by_language_id(@idlanguage).category_name,:action=>:category,:controller=>:flower,:id=>category.id%></li>
+              <%end%>
+            </ul>
+            <div class="title"><span class="title_icon"><img src="/images/bullet6.gif" alt="" /></span><%=@sort15 %></div>
+            <div class="partner">
+              <%for partner in @partners%>
+                <a href="<%=  partner.url %>"><%= image_tag (partner.picture.public_filename()),:border =>0,:title=>partner.name %></a><br/><br/>
+              <%end%>
+            </div>
+          </div>
+        </div>
+        <!--end of right content-->
+        <div class="clear"></div>
+      </div>
+      <!--end of center content-->
+      <div class="footer">
+        <div class="left_footer"><img src="/images/footer_logo.gif" alt="" /><br />
+          <a href=""><img src="/images/csscreme.gif" alt="" border="0" /></a></div>
+        <div class="right_footer"> <%= link_to @sort1,:action=>:index,:controller=>:flower %><%=link_to @sort2,:action=>:aboutus,:controller=>:flower %><%=link_to @sort6,:action=>:contact,:controller=>:flower %></a> </div>
+      </div>
+    </div>
+  </body>
+</html>

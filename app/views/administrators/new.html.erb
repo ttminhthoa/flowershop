@@ -1,0 +1,31 @@
+
+<div class="title"><span class="title_icon"><img src="/images/bullet1.gif" alt="" /></span>Sign up as a new user</div>
+<div class="feat_prod_box_details">
+  <div class="contact_form">
+    <div class="form_subtitle">Create accout</div>
+			
+			<% @administrator.password = @administrator.password_confirmation = nil %>
+			
+			<%= error_messages_for :administrator %>
+			<% form_for :administrator, :url => administrators_path do |f| -%>
+			<div class="form_row">Username: <br/>
+			<%= f.text_field :login,:class=>"contact_input" %></div>
+			<div class="form_row">Password: <br/>
+			<%= f.password_field :password,:class=>"contact_input" %></div>
+			<div class="form_row"> Confirm Password: <br/>
+			<%= f.password_field :password_confirmation,:class=>"contact_input" %></div>
+			<div class="form_row"> Email: <br/>
+			<%= f.text_field :email,:class=>"contact_input" %></div>
+			<p><%= submit_tag 'create',:class=>"register"%></p>
+			<% end -%>
+  </div>
+</div>
+<div class="clear">
+
+</div>
+
+
+
+
+
+
